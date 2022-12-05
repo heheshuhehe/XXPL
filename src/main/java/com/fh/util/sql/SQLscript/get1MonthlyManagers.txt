@@ -1,0 +1,65 @@
+SELECT 
+MAGR_NO,
+MAGR_NO as fund_code,
+MAGR_NUM,
+MAGR_STAT,
+MAGR_NAME,
+'<a href="javascript:void(0);" onclick="search1FundDataChkRslt('''||date_no||''','''||MAGR_NO||''', '''||MAGR_NAME||''')">'||MAGR_NAME||' </a>' 
+AS 
+FAKE_MAGR_NAME,
+(CASE WHEN bill_flag=1 THEN '清单内'
+	  WHEN bill_flag=0 THEN '清单外'
+	  WHEN bill_flag=2 THEN '人工新增'
+	  ELSE '' end) 
+AS bill_flag,
+DATE_NO,
+(CASE WHEN data_chk_rslt_code=0 THEN '未核对'
+	  WHEN data_chk_rslt_code=1 THEN '核对一致'
+	  WHEN data_chk_rslt_code=2 THEN '核对不一致'
+	  WHEN data_chk_rslt_code=9 THEN '不需要核对'
+	  ELSE '' end) AS data_chk_rslt_code,
+(CASE WHEN tg_data_stat_code=1 THEN '已生成'
+	  WHEN tg_data_stat_code=0 THEN '未生成'
+	  ELSE '' end) AS tg_data_stat_code,
+(CASE WHEN PRINT_STAT=1 THEN '已生成'
+	  WHEN PRINT_STAT=0 THEN '未生成'
+	  WHEN PRINT_STAT=2 THEN '未生成'
+	  ELSE '' end) AS print_stat,
+(CASE WHEN wb_data_stat_code=1 THEN '已生成'
+	  WHEN wb_data_stat_code=0 THEN '未生成'
+	  ELSE '' end) AS wb_data_stat_code,
+DISC_TYPE_CODE,
+(CASE WHEN word_rept_stat=1 THEN '已生成'
+	  WHEN word_rept_stat=0 THEN '未生成'
+	  ELSE '' end) AS word_rept_stat,
+PDF_REPT_STAT,
+JSON_FILE_PATH,
+(CASE WHEN excel_rept_stat=1 THEN '已生成'
+	  WHEN excel_rept_stat=0 THEN '未生成'
+	  ELSE '' end) AS excel_rept_stat,  
+	REPT_BEGN_DATE      ,
+    REPT_EXP_DATE       ,
+    REPT_DATE           ,
+    GBICC_EXP_DATE      ,
+    IVSP_CHK_RSLT_CODE  ,
+(CASE when GBICC_CHK_RSLT_CODE=0 then '未生成'
+	  when GBICC_CHK_RSLT_CODE=1 then '已生成'
+	  when GBICC_CHK_RSLT_CODE=2 then '财务指标错误'
+	  when GBICC_CHK_RSLT_CODE=3 then '已强制生成'
+	  else '' end) AS gbicc_chk_rslt_code,wb_data_stat_desc ||' '||memo as memo,
+    LAST_REPT_DATE      ,
+    WB_DATA_STAT_DESC   ,
+    SND_FLAG_CODE       ,
+    SND_BATH_NUM    
+	  
+
+FROM mds.REPT_DISC_SITU_MAGR     
+     
+	  
+WHERE 
+MAGR_NAME LIKE ? 
+AND 
+DISC_TYPE_CODE  = ? 
+AND DATE_NO = ? AND 1=1   
+ 
+

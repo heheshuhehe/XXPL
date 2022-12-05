@@ -1,0 +1,4 @@
+ SELECT 
+* from ___  
+ WHERE fund_code =? and  qut_NO = ? AND info_Src_Code = ? AND 1=1 
+ 

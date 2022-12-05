@@ -1,0 +1,3 @@
+Update mds.REPT_DISC_SITU_MAGR rdsm    
+SET rdsm.JSON_FILE_PATH  = ?, rdsm.PRINT_STAT = ?   		
+where 	rdsm.DISC_TYPE_CODE = ?       AND rdsm.DATE_NO = ? 	AND rdsm.MAGR_NO = ? and 1=1  

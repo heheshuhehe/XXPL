@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:cache="http://www.springframework.org/schema/cache"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/jdbc
+    http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+    http://www.springframework.org/schema/cache
+    http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd">
+    <!-- 引入配置文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:jdbc.properties" />
+	</bean>
+
+	
+	<!-- 信息披露：核算 恒生托管 information disclosure -->
+<!-- 	<bean id="datasourceXXPLTG" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${dbXXPL.driverClass}"></property>
+		<property name="jdbcUrl" value="${dbXXPL.jdbcUrl}"></property>
+		<property name="user" value="${dbXXPL.user}"></property>
+		<property name="password" value="${dbXXPL.password}"></property>
+		<property name="maxPoolSize" value="${jdbc.poolmax}"></property>
+		<property name="minPoolSize" value="${jdbc.poolmin}"></property>
+		<property name="initialPoolSize" value="${jdbc.poolinit}"></property>
+		<property name="maxStatements" value="0"></property>
+		<property name="maxStatementsPerConnection" value="0"></property>
+		<property name="maxConnectionAge" value="${jdbc.connectionAgeMax}"></property>
+		<property name="checkoutTimeout" value="${jdbc.timeOutCheck}"></property>
+		<property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}"></property>
+		<property name="preferredTestQuery" value="select 1 from dual"></property>
+		<property name="maxIdleTime" value="${jdbc.idleTimeMax}"></property>
+		<property name="maxAdministrativeTaskTime" value="${jdbc.adminTaskTimeMax}"></property>
+		<property name="numHelperThreads" value="${jdbc.helperThreadsNum}"></property>
+		<property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}"></property>
+	</bean> -->
+	
+	<!-- 信息披露：应用核对 information disclosure -->
+	<bean id="datasourceXXPLHD" class="com.mchange.v2.c3p0.ComboPooledDataSource"  destroy-method="close">
+		<property name="driverClass" value="${dbXXPLHD.driverClass}"></property>
+		<property name="jdbcUrl" value="${dbXXPLHD.jdbcUrl}"></property>
+		<property name="user" value="${dbXXPLHD.user}"></property>
+		<property name="password" value="${dbXXPLHD.password}"></property>
+		<property name="maxPoolSize" value="${jdbc.poolmax}"></property>
+		<property name="minPoolSize" value="${jdbc.poolmin}"></property>
+		<property name="initialPoolSize" value="${jdbc.poolinit}"></property>
+		<property name="maxStatements" value="0"></property>
+		<property name="maxStatementsPerConnection" value="0"></property>
+		<property name="maxConnectionAge" value="${jdbc.connectionAgeMax}"></property>
+		<property name="checkoutTimeout" value="${jdbc.timeOutCheck}"></property>
+		<property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}"></property>
+		<property name="preferredTestQuery" value="select 1 from dual"></property>
+		<property name="maxIdleTime" value="${jdbc.idleTimeMax}"></property>
+		<property name="maxAdministrativeTaskTime" value="${jdbc.adminTaskTimeMax}"></property>
+		<property name="numHelperThreads" value="${jdbc.helperThreadsNum}"></property>
+		<property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}"></property>
+	</bean>	
+	
+	<!-- 信息披露：应用核对 information disclosure -->
+	<bean id="datasourceXXPLHDMDS" class="com.mchange.v2.c3p0.ComboPooledDataSource"  destroy-method="close">
+		<property name="driverClass" value="${dbXXPLHD.driverClass}"></property>
+		<property name="jdbcUrl" value="${dbXXPLHD.jdbcUrl}"></property>
+		<property name="user" value="${dbXXPLHDmds.user}"></property>
+		<property name="password" value="${dbXXPLHDmds.password}"></property>
+		<property name="maxPoolSize" value="${jdbc.poolmax}"></property>
+		<property name="minPoolSize" value="${jdbc.poolmin}"></property>
+		<property name="initialPoolSize" value="${jdbc.poolinit}"></property>
+		<property name="maxStatements" value="0"></property>
+		<property name="maxStatementsPerConnection" value="0"></property>
+		<property name="maxConnectionAge" value="${jdbc.connectionAgeMax}"></property>
+		<property name="checkoutTimeout" value="${jdbc.timeOutCheck}"></property>
+		<property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}"></property>
+		<property name="preferredTestQuery" value="select 1 from dual"></property>
+		<property name="maxIdleTime" value="${jdbc.idleTimeMax}"></property>
+		<property name="maxAdministrativeTaskTime" value="${jdbc.adminTaskTimeMax}"></property>
+		<property name="numHelperThreads" value="${jdbc.helperThreadsNum}"></property>
+		<property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}"></property>
+	</bean>		
+	
+	<!-- 信息披露：应用核对 information disclosure -->
+	<!-- <bean id="datasourceXCTA" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${dbxcTA.driverClass}"></property>
+		<property name="jdbcUrl" value="${dbxcTA.jdbcUrl}"></property>
+		<property name="user" value="${dbxcTA.user}"></property>
+		<property name="password" value="${dbxcTA.password}"></property>
+		<property name="maxPoolSize" value="${jdbc.poolmax}"></property>
+		<property name="minPoolSize" value="${jdbc.poolmin}"></property>
+		<property name="initialPoolSize" value="${jdbc.poolinit}"></property>
+		<property name="maxStatements" value="0"></property>
+		<property name="maxStatementsPerConnection" value="0"></property>
+		<property name="maxConnectionAge" value="${jdbc.connectionAgeMax}"></property>
+		<property name="checkoutTimeout" value="${jdbc.timeOutCheck}"></property>
+		<property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}"></property>
+		<property name="preferredTestQuery" value="select 1 from dual"></property>
+		<property name="maxIdleTime" value="${jdbc.idleTimeMax}"></property>
+		<property name="maxAdministrativeTaskTime" value="${jdbc.adminTaskTimeMax}"></property>
+		<property name="numHelperThreads" value="${jdbc.helperThreadsNum}"></property>
+		<property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}"></property>
+	</bean>	 -->
+		<!-- 信息披露：吉贝克中间表 information disclosure 吉贝克-->
+	<bean id="dataSourceJBK" class="com.mchange.v2.c3p0.ComboPooledDataSource"  destroy-method="close">
+		<property name="driverClass" value="${dbXXPLjbk.driverClass}"></property>
+		<property name="jdbcUrl" value="${dbXXPLjbk.jdbcUrl}"></property>
+		<property name="user" value="${dbXXPLjbk.user}"></property>
+		<property name="password" value="${dbXXPLjbk.password}"></property>
+		<property name="maxPoolSize" value="${jdbc.poolmax}"></property>
+		<property name="minPoolSize" value="${jdbc.poolmin}"></property>
+		<property name="initialPoolSize" value="${jdbc.poolinit}"></property>
+		<property name="maxStatements" value="0"></property>
+		<property name="maxStatementsPerConnection" value="0"></property>
+		<property name="maxConnectionAge" value="${jdbc.connectionAgeMax}"></property>
+		<property name="checkoutTimeout" value="${jdbc.timeOutCheck}"></property>
+		<property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}"></property>
+		<property name="preferredTestQuery" value="select 1 from dual"></property>
+		<property name="maxIdleTime" value="${jdbc.idleTimeMax}"></property>
+		<property name="maxAdministrativeTaskTime" value="${jdbc.adminTaskTimeMax}"></property>
+		<property name="numHelperThreads" value="${jdbc.helperThreadsNum}"></property>
+		<property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}"></property>
+	</bean>	
+	
+</beans>
+

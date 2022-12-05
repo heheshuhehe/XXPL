@@ -1,0 +1,3 @@
+Update mds.REPT_DISC_SITU rds SET rds.JSON_FILE_PATH  = ? , 
+rds.PRINT_STAT = ? , 
+rds.BILL_FLAG = ? where rds.DISC_TYPE_CODE = ? AND rds.DATE_NO = ? AND rds.FUND_code = ? and 1=1  

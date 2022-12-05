@@ -1,0 +1,439 @@
+var i = 4 ; 
+var et;
+
+function addtab(){     
+         //注意:每个Tab标签只渲染一次     
+          tabs = new Ext.TabPanel({
+             renderTo: "divright",//绑定在标签上     
+             activeTab: 0,//初始显示第几个Tab页     
+             deferredRender: false,//是否在显示每个标签的时候再渲染标签中的内容.默认true     
+             tabPosition: 'top',//表示TabPanel头显示的位置,只有两个值top和bottom.默认是top.     
+             enableTabScroll: true,//当Tab标签过多时,出现滚动条   
+             autoScroll : false,
+             iconCls : 'icon-tab-default',
+             id:'tab_panel',
+//             bodyStyle : "margin:0;padding:0;width:80%;height:100%",
+             width:allwidth, 
+             height:$(window).height()-83,
+             listeners: {
+                 load: function(store, records, successful, eOpts ) {
+                   //如果session超时，则返回的记录应该是没有的
+                   if(records.length <= 0){
+                       Ext.Msg.alert('提示','请重新登录',function(){
+                           location.href = 'login.html';
+                       });
+                   }
+                 }
+              },
+             items: [//Tab的个数   
+             {    
+            	 id : 'inittab',
+                 title: '首页',     
+//                 frame:true, 
+                 html:'<iframe src="mainPage.jsp" frameborder="0" width="100%" scrolling="no" height="100%"></iframe>' ,
+//                autoLoad:{url:'test.jsp'},
+           	    closable: false
+             	}
+             ]
+         });    
+}   
+function addtab1(url,name){
+	//关闭初始页面
+	if(url==null){
+		url="http://www.baidu.com";
+	}else if(url.substring(0,2)=="id"){
+		url="external/sjzxzdbb.jsp?"+url;
+	}
+	 var t = tabs.getActiveTab();   
+    if(t.closable){     
+    	if('inittab'==t.id){
+    		tabs.remove(t);//删除标签     
+    	}
+    }else{     
+        //Ext.Msg.alert("提示","该标签不能关闭") ;     
+    }     
+    var flag = true;
+    for(var qp=0;qp<tabs.items.length;qp++){
+        var code = tabs.items.get(qp).getItemId();
+        if(name==code){
+        	flag = false;
+        }
+    }
+    if(flag){
+	    tabs.add({     
+	        id: name,     
+	        title:name,   
+	        frame:true, 
+	        html:'<iframe src='+url+' frameborder="0" width="100%" scrolling="yes" height="100%"></iframe>' ,
+	        closable: true
+	    }) ;     
+    }
+    tabs.setActiveTab(name) ;//当id为"id"的Tab标签显示(变为活动标签)
+//    alert(document.getElementById("main").style.height);  
+    
+//    alert($("#main").css("height"));  
+//    tabs.setHeight($("#main").css("height"));
+//    alert(et);
+    tabs.setHeight( $(window).height()-83);
+    status=0;
+    allwidth=switchSysBar();
+    tabs.setWidth(allwidth);
+    tabs.show();
+}
+
+
+function list(){
+//		$.ajax({
+//			url : '../../queryMenu.asp?mathid='+Math.random(),
+//			type : 'post',
+//			dataType:'json',//接受数据格式 
+//			success : function(data) {
+//				initMenu(data);
+//			},
+//			failure : function(data) {
+//				alert('初始化菜单失败');
+//			},
+//			error :function(data){
+//				top.window.location.href= '/webapp-inner/index.jsp';
+//			}
+//		});
+	
+	var data=[{"cdid":"01","fcdid":"0","cdname":"1 私募外包综合业务","cdsx":"01"},
+	          {"cdid":"0101","fcdid":"01","cdname":"1.1 账套基本信息配置","cdurl":"/maven-guzhi/modules/guzhi/accountSet.jsp","cdsx":"0101"},
+	          {"cdid":"010101","fcdid":"0101","cdname":"1.1.1 账套对应关系配置","cdurl":"/maven-guzhi/modules/guzhi/accountSet.jsp","cdsx":"010101"},
+	          {"cdid":"010102","fcdid":"0101","cdname":"1.1.2外包资金账号配置","cdurl":"/maven-guzhi/modules/guzhi/zjzhconfig.jsp","cdsx":"010102"},
+	          {"cdid":"010104","fcdid":"0101","cdname":"1.1.4托管资金账号配置","cdurl":"/maven-guzhi/modules/guzhi/zjzhconfigtg.jsp","cdsx":"010102"},
+	          {"cdid":"010103","fcdid":"0101","cdname":"1.1.3 估值人员账套对应配置","cdurl":"/maven-guzhi/modules/guzhi/guzhiUserConfig.jsp","cdsx":"010103"},
+	          {"cdid":"0102","fcdid":"01","cdname":"1.2 科目对应关系配置","cdurl":"/maven-guzhi/modules/guzhi/kemuConfig.jsp","cdsx":"0102"},
+	          {"cdid":"0104","fcdid":"01","cdname":"1.4 账套核对","cdurl":"/maven-guzhi/modules/guzhi/kemuCheck.jsp","cdsx":"0104"},
+	          {"cdid":"0105","fcdid":"01","cdname":"1.5 托管柜台核对","cdurl":"/maven-guzhi/modules/guzhi/tgGthCheck.jsp","cdsx":"0105"},
+	          {"cdid":"0106","fcdid":"01","cdname":"1.6 结息数据","cdurl":"/maven-guzhi/modules/guzhi/shQsGth2.jsp","cdsx":"0106"},
+	          {"cdid":"0106","fcdid":"01","cdname":"1.7 估值人员信息维护","cdurl":"/maven-guzhi/modules/guzhi/guzhiUserInfo.jsp","cdsx":"0107"},
+	          {"cdid":"0108","fcdid":"01","cdname":"1.8 估值表查询","cdurl":"/maven-guzhi/modules/guzhi/gzb.jsp","cdsx":"0108"},
+	          {"cdid":"0109","fcdid":"01","cdname":"1.9 银行对账核对","cdurl":"/maven-guzhi/modules/guzhi/guzhibank.jsp","cdsx":"0109"},
+	          {"cdid":"0110","fcdid":"01","cdname":"1.10 私募天天利天天增分红信息","cdurl":"/maven-guzhi/modules/guzhi/smttlandttz.jsp","cdsx":"0110"},
+	          {"cdid":"0111","fcdid":"01","cdname":"1.11基金开放周期","cdurl":"/maven-guzhi/modules/guzhi/fundopeninfo.jsp","cdsx":"0111"},
+	          {"cdid":"0112","fcdid":"01","cdname":"1.12费用数据查询（旧）","cdurl":"/maven-guzhi/modules/guzhi/feeExport.jsp","cdsx":"0112"},
+	          {"cdid":"0113","fcdid":"01","cdname":"1.13估值表发送","cdurl":"/maven-guzhi/modules/guzhi/reportval.jsp","cdsx":"0113"},
+	          {"cdid":"0114","fcdid":"01","cdname":"1.14季度更新","cdurl":"/maven-guzhi/modules/guzhi/report_jdgx.jsp","cdsx":"0114"},
+	          {"cdid":"0115","fcdid":"01","cdname":"1.15天天利天天增业务","cdurl":"/maven-guzhi/modules/guzhi/fundsqsh.jsp","cdsx":"0115"},
+	          {"cdid":"0116","fcdid":"01","cdname":"1.16外包估值与柜台核对","cdurl":"/maven-guzhi/modules/guzhi/WBcheckBalance.jsp","cdsx":"0116"},
+	          {"cdid":"0117","fcdid":"01","cdname":"1.17托管估值与柜台核对","cdurl":"/maven-guzhi/modules/guzhi/TGcheckBalance.jsp","cdsx":"0117"},
+	          {"cdid":"0118","fcdid":"01","cdname":"1.18报表核对","cdurl":"/maven-guzhi/modules/tgyw/excelcompare.jsp","cdsx":"0118"},
+	          {"cdid":"0119","fcdid":"01","cdname":"1.19纯外包产品对账","cdurl":"/maven-guzhi/modules/guzhi/reportval4cwb.jsp","cdsx":"0119"},
+	          {"cdid":"0120","fcdid":"01","cdname":"1.20每日指令导出","cdurl":"/maven-guzhi/modules/guzhi/TransOrder.jsp","cdsx":"0120"},
+	          {"cdid":"0121","fcdid":"01","cdname":"1.21增值税核对","cdurl":"/maven-guzhi/modules/guzhi/zzscompare.jsp","cdsx":"0121"},
+	          {"cdid":"0122","fcdid":"01","cdname":"1.22协会编码维护","cdurl":"/maven-guzhi/modules/guzhi/amaccode4report.jsp","cdsx":"0122"},
+	          {"cdid":"0123","fcdid":"01","cdname":"1.23柜台余额查询","cdurl":"/maven-guzhi/modules/guzhi/gtbalance.jsp","cdsx":"0123"},
+	          {"cdid":"0124","fcdid":"01","cdname":"1.24外包场外登记标的","cdurl":"/maven-guzhi/modules/guzhi/wb4otcmanage.jsp","cdsx":"0124"},
+	          {"cdid":"0125","fcdid":"01","cdname":"1.25托管场外登记标的","cdurl":"/maven-guzhi/modules/guzhi/tg4otcmanage.jsp","cdsx":"0125"},
+	          {"cdid":"0126","fcdid":"01","cdname":"1.26费用数据查询(新)","cdurl":"/maven-guzhi/modules/guzhi/feeExportnew.jsp","cdsx":"0126"},
+	          {"cdid":"0127","fcdid":"01","cdname":"1.27外包估值与柜台核对(新)","cdurl":"/maven-guzhi/modules/guzhi/WBcheckBalanceNew.jsp","cdsx":"0127"},
+	          {"cdid":"0128","fcdid":"01","cdname":"1.28托管估值与柜台核对(新)","cdurl":"/maven-guzhi/modules/guzhi/TGcheckBalanceNew.jsp","cdsx":"0128"},
+
+	          {"cdid":"02","fcdid":"0","cdname":"2 TA业务","cdsx":"02"},
+	         // {"cdid":"0201","fcdid":"02","cdname":"2.1 净值对照2.5版","cdurl":"/maven-guzhi/modules/guzhi/zuorijizhiold.jsp","cdsx":"0201"},
+	          {"cdid":"0202","fcdid":"02","cdname":"2.2 净值对照4.5版","cdurl":"/maven-guzhi/modules/guzhi/zuorijizhi.jsp","cdsx":"0202"},
+	          {"cdid":"0203","fcdid":"02","cdname":"2.3 分TA与估值核对","cdurl":"/maven-guzhi/modules/guzhi/zls.jsp","cdsx":"0203"},
+	          {"cdid":"0204","fcdid":"02","cdname":"2.4 分红清盘信息","cdurl":"/maven-guzhi/modules/ziguan/FhQp.jsp","cdsx":"0204"},
+	          {"cdid":"0205","fcdid":"02","cdname":"2.5 TA划款单","cdurl":"/maven-guzhi/modules/ziguan/FhHk.jsp","cdsx":"0205"},
+	          {"cdid":"0205","fcdid":"02","cdname":"2.6货币基金收益核对","cdurl":"/maven-guzhi/modules/guzhi/profitdz.jsp","cdsx":"0205"},
+	          {"cdid":"03","fcdid":"0","cdname":"3 估值业务辅助系统","cdsx":"03"},
+	          {"cdid":"0301","fcdid":"03","cdname":"3.1 数据准备","cdurl":"/maven-guzhi/modules/guzhi/downLoadFile2.jsp","cdsx":"0301"},
+	          {"cdid":"0302","fcdid":"03","cdname":"3.2 数据处理","cdurl":"/maven-guzhi/modules/guzhi/datadeal.jsp","cdsx":"0302"},
+	          {"cdid":"0303","fcdid":"03","cdname":"3.3工作量计算","cdurl":"/maven-guzhi/modules/ziguan/worktime_count_lmd.jsp","cdsx":"0303"},
+	          {"cdid":"0304","fcdid":"03","cdname":"3.4清算文件公共配置","cdurl":"/maven-guzhi/modules/guzhi/qsdataprocessini.jsp","cdsx":"0304"},
+	          {"cdid":"0305","fcdid":"03","cdname":"3.5外包清算文件处理","cdurl":"/maven-guzhi/modules/guzhi/qsdataprocess_wb.jsp","cdsx":"0305"},
+	          {"cdid":"0306","fcdid":"03","cdname":"3.6托管清算文件处理","cdurl":"/maven-guzhi/modules/guzhi/qsdataprocess_tg.jsp","cdsx":"0306"},
+	          {"cdid":"0307","fcdid":"03","cdname":"3.7邮件自动发送","cdurl":"/maven-guzhi/modules/guzhi/automailsend.jsp","cdsx":"0307"},
+	          {"cdid":"04","fcdid":"0","cdname":"4 资管业务","cdsx":"04"},
+	          {"cdid":"0401","fcdid":"04","cdname":"4.1 柜台资金核对","cdurl":"/maven-guzhi/modules/guzhi/shQsGth.jsp","cdsx":"0401"},
+	          {"cdid":"0402","fcdid":"04","cdname":"4.2 账套信息配置","cdurl":"/maven-guzhi/modules/ziguan/accountfenlei.jsp","cdsx":"0402"},
+	          {"cdid":"0403","fcdid":"04","cdname":"4.3 佣金费用","cdurl":"/maven-guzhi/modules/ziguan/yongjin.jsp","cdsx":"0403"},
+	          {"cdid":"0404","fcdid":"04","cdname":"4.4 实收资本","cdurl":"/maven-guzhi/modules/ziguan/ziguanquery.jsp","cdsx":"0404"},
+	          {"cdid":"0405","fcdid":"04","cdname":"4.5 母子账套核对","cdurl":"/maven-guzhi/modules/guzhi/mcrelation.jsp","cdsx":"0405"},
+	          {"cdid":"0406","fcdid":"04","cdname":"4.6 佣金核对 ","cdurl":"/maven-guzhi/modules/ziguan/yongjinchecknew.jsp","cdsx":"0406"},
+			  {"cdid":"0407","fcdid":"04","cdname":"4.7 多基金余额表","cdurl":"/maven-guzhi/modules/ziguan/fundsbalance.jsp","cdsx":"0407"},
+			  {"cdid":"0408","fcdid":"04","cdname":"4.8 增值税","cdurl":"/maven-guzhi/modules/ziguan/zzsinfo.jsp","cdsx":"0408"},
+			  {"cdid":"0409","fcdid":"04","cdname":"4.9 报表核对","cdurl":"/maven-guzhi/modules/ziguan/formcheck.jsp","cdsx":"0409"},
+			  {"cdid":"0410","fcdid":"04","cdname":"4.10 佣金核对(上海专用)","cdurl":"/maven-guzhi/modules/ziguan/yongjinsh.jsp","cdsx":"0410"},		 
+			  {"cdid":"0411","fcdid":"04","cdname":"4.11 风控指标查询","cdurl":"/maven-guzhi/modules/ziguan/fkzbhd.jsp","cdsx":"0411"},
+			  {"cdid":"0412","fcdid":"04","cdname":"4.12交易指令查询","cdurl":"/maven-guzhi/modules/ziguan/fund_directive_enquiry_lmd.jsp","cdsx":"0412"},
+			  {"cdid":"0413","fcdid":"04","cdname":"4.13交易指令核对","cdurl":"/maven-guzhi/modules/ziguan/fund_directive_enquiry_check_lmd.jsp","cdsx":"0413"},
+			  {"cdid":"0414","fcdid":"04","cdname":"4.14增值税-核对","cdurl":"/maven-guzhi/modules/ziguan/fund_tax_check_lmd.jsp","cdsx":"0414"},
+			  //{"cdid":"0415","fcdid":"04","cdname":"4.15 佣金费用(上海集合)","cdurl":"/maven-guzhi/modules/ziguan/yongjinshjh.jsp","cdsx":"0415"},
+			  {"cdid":"0499","fcdid":"04","cdname":"4.15 佣金核对(上海集合)（新）","cdurl":"/maven-guzhi/modules/ziguan/yongjinshjh_new.jsp","cdsx":"0499"},
+			  {"cdid":"0416","fcdid":"04","cdname":"4.16估值表发送","cdurl":"/maven-guzhi/modules/ziguan/reportval.jsp","cdsx":"0416"},
+			  {"cdid":"0417","fcdid":"04","cdname":"4.17净值增长率计算","cdurl":"/maven-guzhi/modules/ziguan/zzlCalc.jsp","cdsx":"0417"},
+			  {"cdid":"0418","fcdid":"04","cdname":"4.18业绩报酬计提审核","cdurl":"/maven-guzhi/modules/ziguan/yjbc_sh.jsp","cdsx":"0418"},
+			  {"cdid":"05","fcdid":"0","cdname":"5短信息服务","cdsx":"05"},
+			  {"cdid":"0501","fcdid":"05","cdname":"5.1短信服务","cdurl":"/maven-guzhi/modules/ziguan/sms.jsp","cdsx":"00501"},
+			  {"cdid":"0502","fcdid":"05","cdname":"5.2自定义短信服务","cdurl":"/maven-guzhi/modules/ziguan/sms_new.jsp","cdsx":"00502"},
+			  {"cdid":"06","fcdid":"0","cdname":"6投资监督","cdsx":"06"},
+			  {"cdid":"0601","fcdid":"06","cdname":"6.1代销产品评审","cdurl":"/maven-guzhi/modules/ziguan/dxlist.jsp","cdsx":"00601"},
+			  {"cdid":"07","fcdid":"0","cdname":"7综合查询","cdsx":"06"},
+			  {"cdid":"0701","fcdid":"07","cdname":"7.1私募基金综合信息","cdurl":"/maven-guzhi/modules/guzhi/fundinfo_all.jsp","cdsx":"00701"},
+			  {"cdid":"0702","fcdid":"07","cdname":"7.2私募基金统计查询","cdurl":"/maven-guzhi/modules/guzhi/smjjtjcx.jsp","cdsx":"00702"},
+	          {"cdid":"0703","fcdid":"07","cdname":"7.3托管外包费（已付）查询","cdurl":"/maven-guzhi/modules/guzhi/relationTrade.jsp","cdsx":"0703"},
+	          {"cdid":"0704","fcdid":"07","cdname":"7.4业务总结","cdurl":"/maven-guzhi/modules/guzhi/businessSum.jsp","cdsx":"0704"},
+	          
+	          {"cdid":"08","fcdid":"0","cdname":"8托管业务","cdsx":"08"},
+	          {"cdid":"0801","fcdid":"08","cdname":"8.1最高额度申报","cdurl":"/maven-guzhi/modules/tgyw/mosthighreport.jsp","cdsx":"0801"},
+	          {"cdid":"10","fcdid":"0","cdname":"10 系统管理","cdsx":"10"},
+	          {"cdid":"1001","fcdid":"10","cdname":"10.1 菜单管理","cdurl":"/maven-guzhi/modules/guzhi/codeManage.jsp","cdsx":"1001"}]
+/* 			  {"cdid":"05","fcdid":"0","cdname":"5 其他","cdsx":"05"},
+	          {"cdid":"0501","fcdid":"05","cdname":"5.1 私募季报","cdurl":"/maven-guzhi/modules/guzhi/simujibao.jsp","cdsx":"0501"},
+	          {"cdid":"0503","fcdid":"05","cdname":"5.3 资管备付金与柜台核算（old）","cdurl":"/maven-guzhi/modules/ziguan/ZGBFJcheck.jsp","cdsx":"0503"},
+	          {"cdid":"0504","fcdid":"05","cdname":"5.4 资管备付金与柜台核算","cdurl":"/maven-guzhi/modules/ziguan/ZGBFJYGTcheck.jsp","cdsx":"0504"},
+	          {"cdid":"0505","fcdid":"05","cdname":"5.5 分TA与估值系统核对","cdurl":"/maven-guzhi/modules/guzhi/taguzhicheck.jsp","cdsx":"0505"},
+	          {"cdid":"0506","fcdid":"05","cdname":"5.6 分红清盘信息","cdurl":"/maven-guzhi/modules/ziguan/FhQp.jsp","cdsx":"0506"},
+	          {"cdid":"0507","fcdid":"05","cdname":"5.8 对账单信息录入","cdurl":"/maven-guzhi/modules/guzhi/stainfoinput.jsp","cdsx":"0508"},
+	          {"cdid":"0509","fcdid":"05","cdname":"5.10 母子账套对应关系(zls)","cdurl":"/maven-guzhi/modules/guzhi/muziaccount.jsp","cdsx":"05010"},
+	          {"cdid":"0508","fcdid":"05","cdname":"5.9 佣金核对(old) ","cdurl":"/maven-guzhi/modules/ziguan/yongjincheck.jsp","cdsx":"0508"},
+			  {"cdid":"0509","fcdid":"05","cdname":"5.10 佣金核对 ","cdurl":"/maven-guzhi/modules/ziguan/yongjinchecknew.jsp","cdsx":"0509"},
+	          {"cdid":"10","fcdid":"0","cdname":"10 系统管理","cdsx":"10"},
+	          {"cdid":"1001","fcdid":"10","cdname":"10.1 菜单管理","cdurl":"/webapp-inner/modules/login/menugl.jsp","cdsx":"1001"}];
+*/	
+	initMenu(data);
+	
+	
+}
+//加载本地ext图片
+Ext.BLANK_IMAGE_URL = "ext/resources/images/default/s.gif";
+Ext.onReady(function(){
+	list();
+
+	et = $(window).height()-83;
+});
+
+
+function initChildTree(data,parnode) {
+	 var obj = $(".x-panel-body").children(".x-panel").not($(".x-panel-collapsed")).children('.x-panel-header');
+	  obj.css({'background':'#D9ECF6'});
+	  obj.children('span').css({'color':'#fff'});
+	var str = '';
+	var ss = false;
+	for (var j = 0; j <data.length ; j++) 
+	{
+		var json = data[j];
+		if(json.fcdid==parnode){
+			ss = true;
+			var ob = json.cdid+"-"+json.cdname+"-"+json.fcdid+"-"+json.cdurl+"-"+json.imgpath+"-"+json.cdsx;
+			var childs = 0;
+			for(var k =0 ;k<data.length; k++){
+				if(data[k].fcdid==json.cdid){
+					childs++;
+				}
+			}
+			if(childs>0){
+				str =str+"{'text':'"+json.cdname+"','expanded':false,'children':[";
+				str += initChildTree(data,json.cdid);
+				str = str + "]";
+			}else{
+				str += "{'text':'"+json.cdname+"','leaf':true,'iconCls':'blueDot','listeners':{'click':function(){addtab1('"+json.cdurl+"','"+json.cdname+"');}}";
+			
+			}
+			str +="},";
+		}
+	}
+	if(ss){
+		str = str.substring(0,str.length-1);
+	}else{
+		str =str +"{}";
+	}
+	
+	return str;
+}
+
+function initTreeMenu(data){
+	
+	var str = "";
+	var jsonarr = [];
+	 for (var i = 0; i < data.length; i++) 
+	 {
+		 var json = data[i];
+		if(json.fcdid=='0'){
+			var str1 = "{'text':'菜单','expanded':true,'lines':false,'children':[";
+			var jsondata1 = initChildTree(data,json.cdid);
+			str1 = str1+ jsondata1 + "]}";
+			var obj =  (new Function("return" + str1))(); 
+			var tree = new Ext.tree.TreePanel({
+				rootVisible: false,
+		        loader: new Ext.tree.TreeLoader(),
+		        root: new Ext.tree.AsyncTreeNode(
+		        		obj)
+		    });
+			 
+			str = {title:json.cdname,autoHeight:true,layout:'fit',items:[tree]};
+			jsonarr.push(str);
+		}
+	}
+	 return jsonarr;
+}
+
+function initMenu(data){
+	var jsonData = initTreeMenu(data);
+	new Ext.Panel({
+      renderTo:"divleft", 
+      title:"菜单导航",
+      width:$(window).width()*0.18,
+      height:$(window).height()-83,
+      layout:"accordion",
+      id:'tree',
+      layoutConfig:{
+       collapseFirst:true,
+       animate:false
+      },
+      items:jsonData
+      });
+    addtab();
+    allwidth=switchSysBar();
+    addcls();
+   var obj = $(".x-panel-body").children(".x-panel").not($(".x-panel-collapsed")).children('.x-panel-header');
+   obj.css({'background':'#0E83B9'});
+   obj.children('span').css({'color':'#fff'});
+  var wd =  $('.divSmall').find('#tree').width();
+  if(wd<214){
+	  $('.divSmall').find('#tree').children('.x-panel-header').children('span').css({'margin-left':'0'});
+  }else{
+	  var mgl = (wd-214)/2;
+	  $('.divSmall').find('#tree').children('.x-panel-header').children('span').css({'margin-left':'0px'});
+  }
+  
+   $('.x-panel-body').css({'width':'100%'});
+   $('.x-tree').css({'width':'100%'});
+   /*$('.x-tree-elbow-plus').parent('.x-tree-node-el').addClass("x-tree-two-bg");*/
+   $('.x-panel-body-noheader').css({'height':'100%'});
+   $(".x-tree-node img").remove('.x-tree-node-icon');
+   $('#divright').children('#tab_panel').css({'width':'1115px'});
+   $('#divright').children('#tab_panel').children('.x-tab-panel-header').css({'width':'1115px'});
+   $('#divright').children('#tab_panel').children('.x-tab-panel-header').children('.x-tab-strip-wrap').css({'width':'1115px'});
+}
+
+//伸缩菜单
+var status = 0;
+var Menus = new DvMenuCls;
+var allwidth;
+var allwidt_gd;
+
+document.onclick=Menus.Clear;
+function switchSysBar(){
+	var frmTitle=document.getElementById("divleft");
+	var frmTitle_=document.getElementById("divright");
+	var tab_panel=Ext.getCmp("tab_panel");
+	//图片切换
+	var zyss=document.getElementById("zyss");
+	var zyss_right=document.getElementById("zyss_right");
+     if (status%2==1){
+    	  status ++;
+    	  
+    	  zyss.style.display="none";
+    	  zyss_right.style.display="";
+          frmTitle.style.display="none";
+          frmTitle_.style.width="99.4%";
+          allwidth=$(window).width()*0.994;
+          tab_panel.setWidth(allwidth);
+          tab_panel.render();
+     }else{
+		  status ++;
+		  zyss.style.display="";
+    	  zyss_right.style.display="none";
+		  
+          frmTitle.style.display="";
+      
+          frmTitle_.style.width="81.4%";
+          allwidth=$(window).width()*0.814;
+          if(status==1){
+        	  allwidt_gd = $(window).width()*0.814;
+          }
+          tab_panel.setWidth(allwidt_gd);
+//          tab_panel.render();
+     }
+     return allwidth;
+}
+
+function DvMenuCls(){
+	var MenuHides = new Array();
+	this.Show = function(obj,depth){
+		var childNode = this.GetChildNode(obj);
+		if (!childNode){return ;}
+		if (typeof(MenuHides[depth])=="object"){
+			this.closediv(MenuHides[depth]);
+			MenuHides[depth] = '';
+		};
+		if (depth>0){
+			if (childNode.parentNode.offsetWidth>0){
+				childNode.style.left= childNode.parentNode.offsetWidth+'px';
+				
+			}else{
+				childNode.style.left='100px';
+			};
+			
+			childNode.style.top = '-2px';
+		};
+
+		childNode.style.display ='none';
+		MenuHides[depth]=childNode;
+	
+	};
+
+	this.Clear = function(){
+		for(var i=0;i<MenuHides.length;i++){
+			if (MenuHides[i]!=null && MenuHides[i]!=''){
+				MenuHides[i].style.display='none';
+				MenuHides[i]='';
+			}
+		}
+	};
+
+}
+
+window.onresize=resizeBannerImage;//当窗口改变宽度时执行此函数
+function resizeBannerImage(){
+    var winW = $(window).width();
+    var winH = $(window).height();
+    Ext.getCmp("tree").setWidth(winW*0.18);
+    Ext.getCmp("tab_panel").setWidth(winW*0.814);
+    Ext.getCmp("tree").setHeight(winH-83);
+    Ext.getCmp("tab_panel").setHeight(winH-83);
+ }
+
+
+//设置菜单大项颜色变化
+function addcls(){
+	var color = $(".x-panel-body").children(".x-panel .x-panel-collapsed").children('.x-panel-header').children('span').css("color");
+	//获得所有大项菜单所对应的对象
+	var obj = $(".x-panel-body").children(".x-panel");
+	var objspan = $(".x-panel-body").children(".x-panel").find('.x-tool-toggle');
+	objspan.on('click',function(){
+		//获得对应菜单大项的对象
+		var obj = $(".x-panel-body").children(".x-panel").not($(".x-panel-collapsed")).children('.x-panel-header');
+		//点击设置背景色和颜色
+		obj.css({'background':'#0E83B9'});
+	    obj.children('span').css({'color':'#fff'});
+	    //获得其他菜单大项的对象
+		var obj2 = $(".x-panel-body").children(".x-panel .x-panel-collapsed").children('.x-panel-header');
+		//恢复到之前默认背景色和颜色
+		obj2.css({'background':'#D9ECF6'});
+	    obj2.children('span').css({'color':color});
+	});
+	$('.x-tree-node').on('click',function(){
+		 $('#divright').children('#tab_panel').css({'width':'2115px'});
+		 $('#divright').children('#tab_panel').children('.x-tab-panel-header').css({'width':'2115px'});
+		 $('#divright').children('#tab_panel').children('.x-tab-panel-header').children('.x-tab-strip-wrap').css({'width':'2115px'});
+	})
+	
+	obj.on('click',function(){
+		//获得对应菜单大项的对象
+		var obj = $(".x-panel-body").children(".x-panel").not($(".x-panel-collapsed")).children('.x-panel-header');
+		//点击设置背景色和颜色
+		obj.css({'background':'#0E83B9'});
+	    obj.children('span').css({'color':'#fff'});
+	    //获得其他菜单大项的对象
+		var obj2 = $(".x-panel-body").children(".x-panel .x-panel-collapsed").children('.x-panel-header');
+		//恢复到之前默认背景色和颜色
+		obj2.css({'background':'#D9ECF6'});
+	    obj2.children('span').css({'color':color});
+	   /* $('#tree').children('.x-panel-bwrap').children('.x-panel-body').css({"overflow":"hidden"});*/
+	});
+}

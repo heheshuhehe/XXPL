@@ -1,0 +1,3 @@
+SELECT * FROM mds.REPT_PATH_PARA WHERE 
+1 = 1 
+

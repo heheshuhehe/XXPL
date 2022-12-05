@@ -1,0 +1,10 @@
+.idea/
+.externalToolBuilders/
+.svn/
+target/
+bin/
+pom.xml
+.mymetadata
+XinXiPiLu.iml
+src/main/webapp/WEB-INF/lib/ojdbc6.jar
+src/main/webapp/WEB-INF/lib/ojdbc8.jar

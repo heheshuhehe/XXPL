@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//src/main/resources/config.properties=UTF-8
+encoding//src/main/webapp/mainPage.jsp=UTF-8
+encoding//src/main/webapp/modules/derivative/readyJS.jsp=UTF-8
+encoding//src/main/webapp/modules/guzhi/accountSet.jsp=UTF-8
+encoding//src/main/webapp/modules/guzhi/codeManage.jsp=UTF-8
+encoding//src/main/webapp/modules/guzhi/guzhiUserConfig.jsp=UTF-8
+encoding//src/main/webapp/modules/guzhi/gzb.jsp=UTF-8
+encoding//src/main/webapp/modules/guzhi/kemuCheck.jsp=UTF-8
+encoding//src/main/webapp/modules/guzhi/kemuConfig.jsp=UTF-8
+encoding//src/main/webapp/modules/guzhi/tgGthCheck.jsp=UTF-8
+encoding/<project>=UTF-8

@@ -1,0 +1,37 @@
+SELECT t1.DISC_TYPE_CODE,
+       t1.DATE_NO,
+       t1.FUND_CODE,
+       t2.FUND_NAME,
+       substr(t2.REPT_DATE, 1, 4) || '/' || substr(t2.REPT_DATE, 5, 2) || '/' || substr(t2.REPT_DATE, 7) as REPT_DATE,
+       t1.INDX_SRC_TAB,
+       t1.INDX_SRC_FLD,
+       t1.INDX_TYPE_CODE,
+       t1.INDX_NAME,
+       t1.INDX_DIM,
+       T1.INDX_SRC_DIM,
+       t1.WB_DATA,
+       t1.TG_DATA,
+       t1.UPD_AFT_DATA,
+       t1.UPDER_IP,
+       t1.SRC_TAB_ONUM,
+       t1.SRC_FLD_ONUM,
+       (CASE
+            WHEN t1.CHK_RSLT_CODE = 0 THEN '未核对'
+            WHEN t1.CHK_RSLT_CODE = 1 THEN '核对一致'
+            WHEN t1.CHK_RSLT_CODE = 2 THEN '核对不一致'
+            WHEN t1.CHK_RSLT_CODE = 3 THEN '人工修改'
+            WHEN t1.CHK_RSLT_CODE = 4 THEN '人工确认'
+            WHEN t1.CHK_RSLT_CODE = 9 THEN '不需要核对'
+            ELSE '' end)
+                                                                                                         AS CHK_RSLT_CODE,
+       t1.UPD_SQL,
+       t1.MEMO,
+       t1.magr_no 
+	 
+FROM REPT_DISC_CHK_RSLT t1
+         left join REPT_DISC_SITU t2
+                   on t1.FUND_CODE = t2.FUND_CODE and t1.date_no = t2.date_no and t1.DISC_TYPE_CODE = t2.DISC_TYPE_CODE   
+Where t1.DISC_TYPE_CODE = ?
+  and t1.DATE_NO = ? 
+  AND 1 = 1
+

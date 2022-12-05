@@ -1,0 +1,16 @@
+SELECT 
+FUND_CODE,
+INFO_SRC_CODE,
+MTH_NO,
+C_PORT_CODE,
+SUBF_CODE,
+SUBF_NAME,
+SHR_CLAS,
+VALU_DATE,
+SHR_NET_VAL,
+SHR_AGGR_NET_VAL,
+FUND_SHR_GAMT,
+FUND_NAV            
+                 
+ from mds.REPT_M_NET_VAL_CIFD  WHERE  1=1 and info_src_code = ?                   
+       

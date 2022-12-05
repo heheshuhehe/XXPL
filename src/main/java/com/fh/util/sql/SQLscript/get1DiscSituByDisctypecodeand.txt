@@ -1,0 +1,2 @@
+SELECT * from mds.REPT_DISC_SITU WHERE  DISC_TYPE_CODE = ? and DATE_NO = ? AND  FUND_CODE = ? and 1=1   
+ 

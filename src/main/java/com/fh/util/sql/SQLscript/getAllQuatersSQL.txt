@@ -1,0 +1,1 @@
+select distinct  date_no   as value from MDS.REPT_DISC_SITU where DISC_TYPE_CODE ='Q' order BY date_no DESC 

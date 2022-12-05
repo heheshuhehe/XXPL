@@ -1,0 +1,2 @@
+SELECT DISTINCT date_no FROM 
+mds.REPT_DISC_SITU_MAGR rdsm where 1=1 

@@ -1,0 +1,154 @@
+db.user=guzhi
+db.password=guzhi
+#db.user=guzhi_test
+#db.password=guzhi_test
+db.jdbcUrl=jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=OFF)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.17)(PORT = 1521))(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.19)(PORT = 1521)))(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=sjcjdb)(failover_mode=(type=select)(method=basic))))
+db.driverClass=oracle.jdbc.driver.OracleDriver
+
+
+
+
+
+
+#dbTG.user=tgcbs
+#dbTG.password=tgcbs
+#dbTG.jdbcUrl=jdbc:oracle:thin:@18.8.16.202:1521:guzhi
+#dbTG.driverClass=oracle.jdbc.driver.OracleDriver
+
+dbTG.user=tgcbs
+dbTG.password=tgcbs
+dbTG.jdbcUrl=jdbc:oracle:thin:@172.18.181.18:1521:gmjjdb1
+dbTG.driverClass=oracle.jdbc.driver.OracleDriver
+
+
+dbWB.user=V45HTWB1  
+dbWB.password=hyzq123
+dbWB.jdbcUrl=jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=OFF)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.16)(PORT = 1521))(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.18)(PORT = 1521)))(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=smgz)(failover_mode=(type=select)(method=basic))))
+dbWB.driverClass=oracle.jdbc.driver.OracleDriver
+
+
+dbGT.user=smjj
+dbGT.password=smjj
+dbGT.jdbcUrl=jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=OFF)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.17)(PORT = 1521))(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.19)(PORT = 1521)))(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=smjj)(failover_mode=(type=select)(method=basic))))
+dbGT.driverClass=oracle.jdbc.driver.OracleDriver
+
+
+dbTA.user=ta4
+dbTA.password=ta4
+dbTA.jdbcUrl=jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=OFF)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.17)(PORT = 1521))(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.19)(PORT = 1521)))(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=ta4)(failover_mode=(type=select)(method=basic))))
+dbTA.driverClass=oracle.jdbc.driver.OracleDriver
+
+
+dbFTA.user=swhy
+dbFTA.password=swhy
+dbFTA.jdbcUrl=jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=OFF)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.17)(PORT = 1521))(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.19)(PORT = 1521)))(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=orcl)(failover_mode=(type=select)(method=basic))))
+dbFTA.driverClass=oracle.jdbc.driver.OracleDriver
+
+
+
+dbPro.user=guzhiold
+dbPro.password=guzhi
+dbPro.jdbcUrl=jdbc:oracle:thin:@18.8.16.67:1522:oracleass
+dbPro.driverClass=oracle.jdbc.driver.OracleDriver
+
+#2.5 4.5\u65B0\u5EFA\u8D26\u5957\u53F7\u5BF9\u7167
+dbDZ.user=smgz
+dbDZ.password=smgz
+dbDZ.jdbcUrl=jdbc:oracle:thin:@18.15.8.64:1521:orcl
+dbDZ.driverClass=oracle.jdbc.driver.OracleDriver
+
+dbFM.user=db_fm
+dbFM.password=db_fm_sinosoft
+dbFM.jdbcUrl=jdbc:oracle:thin:@18.15.8.64:1521:orcl
+dbFM.driverClass=oracle.jdbc.driver.OracleDriver
+
+#2.5\u7248\u672C\u5916\u5305\u4F30\u503C\u8868
+dbOld.user=smgz
+dbOld.password=smgz
+dbOld.jdbcUrl=jdbc:oracle:thin:@18.8.16.202:1521:guzhi25
+dbOld.driverClass=oracle.jdbc.driver.OracleDriver
+
+ 
+
+
+#####\u8D44\u7BA1################
+#####2.5 1 -\u5317\u4EAC\u5B8F\u6E90##########
+dbOldZG.user=fundac2
+dbOldZG.password=fundac2 
+dbOldZG.jdbcUrl=jdbc:oracle:thin:@18.8.16.203:1521:guzhi25
+dbOldZG.driverClass=oracle.jdbc.driver.OracleDriver
+#####2.5  \u4E0A\u6D77\u96C6\u54082##########
+dbOldZG2.user=GZJHUSER25
+dbOldZG2.password=GZJHUSER25
+dbOldZG2.jdbcUrl=jdbc:oracle:thin:@18.8.16.203:1521:guzhi25
+dbOldZG2.driverClass=oracle.jdbc.driver.OracleDriver
+#####2.5 \u4E0A\u6D77\u5B9A\u5411##########
+dbOldZG3.user=GZDXUSER25
+dbOldZG3.password=GZDXUSER25
+dbOldZG3.jdbcUrl=jdbc:oracle:thin:@18.8.16.203:1521:guzhi25
+dbOldZG3.driverClass=oracle.jdbc.driver.OracleDriver
+#####2.5 QDII ##########
+dbOldZG4.user=SYWGQDII
+dbOldZG4.password=sywgqdii
+dbOldZG4.jdbcUrl=jdbc:oracle:thin:@18.8.16.203:1521:guzhi25
+dbOldZG4.driverClass=oracle.jdbc.driver.OracleDriver
+
+########\u8D44\u7BA14.5#########################
+dbNewZG.user=V45HTWB1
+dbNewZG.password=hyzq123
+dbNewZG.jdbcUrl=jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=OFF)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.17)(PORT = 1521))(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.180.19)(PORT = 1521)))(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=gz45)(failover_mode=(type=select)(method=basic))))
+dbNewZG.driverClass=oracle.jdbc.driver.OracleDriver
+ 
+####\u7EFC\u5408\u7BA1\u7406\u5E73\u53F0
+dbZHGLPT.user=db_fm
+dbZHGLPT.password=db_fm_sinosoft
+dbZHGLPT.jdbcUrl=jdbc:oracle:thin:@172.18.180.128:1521:glrdb1
+dbZHGLPT.driverClass=oracle.jdbc.driver.OracleDriver
+
+######## information disclosure, XinxiPiLu tuoguan shujuku################ 
+dbXXPL.user=monitor
+dbXXPL.password=monitor
+dbXXPL.jdbcUrl=jdbc:oracle:thin:@10.200.5.40:181:gmjjdb1
+dbXXPL.driverClass=oracle.jdbc.driver.OracleDriver
+
+######## information disclosure, XinxiPiLu hedui yingyong shujuku################ 
+dbXXPLHD.user=guzhi
+dbXXPLHD.password=guzhi
+dbXXPLHDmds.user=mds
+dbXXPLHDmds.password=mds
+#dbXXPLHD.jdbcUrl=jdbc:oracle:thin:@172.18.152.24:1521:sjcjdb
+dbXXPLHD.jdbcUrl=jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=OFF)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.152.24)(PORT = 1521))(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.152.24:1521)(PORT = 1521)))(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=sjcjdb)(failover_mode=(type=select)(method=basic))))
+dbXXPLHD.driverClass=oracle.jdbc.driver.OracleDriver
+
+######## information disclosure, XinxiPiLu jibeke zhongjian shujuku################ 
+dbXXPLjbkSWHY.user=swhy
+dbXXPLjbkSWHY.password=swhy
+dbXXPLjbk.user=xbrl
+dbXXPLjbk.password=xbrl
+dbXXPLjbk.jdbcUrl=jdbc:oracle:thin:@172.18.180.40:1521:smbgora01
+#dbXXPLHD.jdbcUrl=jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=OFF)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=10.200.5.80)(PORT = 1521))(ADDRESS=(PROTOCOL=TCP)(HOST=10.200.5.80:1521)(PORT = 1521)))(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=orcl)(failover_mode=(type=select)(method=basic))))
+dbXXPLjbk.driverClass=oracle.jdbc.driver.OracleDriver
+
+dbxcTA.user=fund60pub
+dbxcTA.password=handsomes
+dbxcTA.jdbcUrl=jdbc:dm://172.18.180.32:5236
+#dbxcTA.jdbcUrl=jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=OFF)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.152.24)(PORT = 1521))(ADDRESS=(PROTOCOL=TCP)(HOST=172.18.152.24:1521)(PORT = 1521)))(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=sjcjdb)(failover_mode=(type=select)(method=basic))))
+dbxcTA.driverClass=dm.jdbc.driver.DmDriver
+
+
+
+
+########################################### other settings ####################
+jdbc.poolmax=150
+jdbc.poolmin=20
+jdbc.poolinit=5
+jdbc.maxStatements=0
+jdbc.maxStatementsPerConnection=0
+jdbc.connectionAgeMax=1800
+jdbc.timeOutCheck=10000
+jdbc.testConnectionOnCheckout=false
+jdbc.idleTimeMax=60
+jdbc.adminTaskTimeMax=0
+jdbc.helperThreadsNum =15
+jdbc.acquireRetryAttempts=30
+jdbc.unreturnedConnectionTimeout=300

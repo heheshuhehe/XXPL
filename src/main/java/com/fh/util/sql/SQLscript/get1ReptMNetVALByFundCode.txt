@@ -1,0 +1,1 @@
+SELECT * FROM mds.REPT_M_NET_VAL rmnv WHERE rmnv.fund_code = ? AND INFO_SRC_CODE  = ? AND mth_no = ? AND 1=1

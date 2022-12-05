@@ -1,0 +1,46 @@
+ SELECT 
+disc_type_code，
+date_no，
+serv_scop，
+fund_num，
+fund_code，
+fund_name，
+substr(rept_date,1,4)||'/'||substr(rept_date,5,2)||'/'||substr(rept_date,7) as rept_date,
+wb_c_pord_code,
+tg_c_pord_code,
+（CASE WHEN wb_data_stat_code=1 THEN '已生成'
+	  WHEN wb_data_stat_code=0 THEN '未生成'
+	  ELSE '' end） AS wb_data_stat_code,
+（CASE WHEN tg_data_stat_code=1 THEN '已生成'
+	  WHEN tg_data_stat_code=0 THEN '未生成'
+	  ELSE '' end） AS tg_data_stat_code,
+（CASE WHEN data_chk_rslt_code=0 THEN '未核对'
+	  WHEN data_chk_rslt_code=1 THEN '核对一致'
+	  WHEN data_chk_rslt_code=2 THEN '核对不一致'
+	  WHEN data_chk_rslt_code=9 THEN '不需要核对'
+	  ELSE '' end） AS data_chk_rslt_code，
+（CASE WHEN excel_rept_stat=1 THEN '已生成'
+	  WHEN excel_rept_stat=0 THEN '未生成'
+	  ELSE '' end） AS excel_rept_stat,
+（CASE WHEN word_rept_stat=1 THEN '已生成'
+	  WHEN word_rept_stat=0 THEN '未生成'
+	  ELSE '' end） AS word_rept_stat，
+（CASE WHEN pdf_rept_stat=1 THEN '已生成'
+	  WHEN pdf_rept_stat=0 THEN '未生成'
+	  ELSE '' end） AS pdf_rept_stat，
+wb_valu_prsn_name，
+tg_valu_prsn_name，
+proj_mngr_name，
+magr_ex_stat，
+substr(fund_setp_date,1,4)||'/'||substr(fund_setp_date,5,2)||'/'||substr(fund_setp_date,7) as fund_setp_date,
+substr(fund_matu_date,1,4)||'/'||substr(fund_matu_date,5,2)||'/'||substr(fund_matu_date,7) as fund_matu_date,
+fund_stat，
+fund_type，
+is_cifd，
+memo,
+（CASE WHEN bill_flag=1 THEN '清单内'
+	  WHEN bill_flag=0 THEN '清单外'
+	  WHEN bill_flag=2 THEN '人工新增'
+	  ELSE '' end） 
+AS bill_flag
+ FROM mds.REPT_DISC_SITU  WHERE date_no =? and FUND_NAME LIKE ? AND DISC_TYPE_CODE = ? AND 1=1 
